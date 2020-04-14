@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
-    <link src="style.css" type="text/css">
+    <link rel = "stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+    <div class="appContainer">
+        <div class ="contentContainer">
+            <div id="timerContainer">25:00</div>
+            <div class="buttonContainer">
+                <div id="play">
+                    <i class="material-icons">play_circle_outline</i>
+                </div>
+                <div id="pause">
+                    <i class="material-icons">pause_circle_outline</i>
+                </div>
+                <div id="reset">
+                    <i class="material-icons">replay</i>
+                </div>
+            </div>
+            <div class="timeSettingsContainer">
+                <div class="sessionTime">
+                    <div id="sessionHeading">Session Time</div>
+                    <div class="sessionSettings">
+                        <button id="decreaseSessionTime">-</button>
+                        <div id="selectedSessionTime">25</div>
+                        <button id="increaseSessionTime">+</button>
+                    </div>
+                </div>
+                <div class="breakTime">
+                    <div id="breakHeading">Break Time</div>
+                    <div class="breakSettings">
+                        <button id="decreaseBreakTime">-</button>
+                        <div id="selectedBreakTime">5</div>
+                        <button id="increaseBreakTime">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 </body>
 <script src="script.js"></script>

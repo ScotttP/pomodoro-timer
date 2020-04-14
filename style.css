@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.appContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 300px;
+    height: 300px;
+    border: 5px black solid;
+    padding: 2em;
+}
+
+.timerContainer{
+    font-size: larger;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timeSettingsContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sessionTime{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.sessionSettings {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.breakTime{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+.breakSettings {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
