@@ -34,12 +34,7 @@ pauseButton.addEventListener('click', () => {
 })
 
 resetButton.addEventListener('click', () => {
-    increaseSessionTime.disabled = false;
-    decreaseSessionTime.disabled = false;
-    clearInterval(intervalFunction);
-    selectedSessionTime.innerText = selectedSessionTimeValue;
-    selectedBreakTime.innerText = selectedBreakTimeValue;
-    displayTimeCountdown.innerText = selectedSessionTime.innerText + ':00';
+    resetCountDown();
     
 })
 
@@ -67,7 +62,7 @@ function startCountDown () {
     displayTimeCountdown.innerText = `${minutes}:${seconds}`;
 
     countDownTime--;
-    countDownTime = countDownTime < 0 ? 0 : countDownTime; 
+    countDownTime = countDownTime < 0 ? 0 :countDownTime; 
 
     playButtonFind.disabled = true; 
     resetButtonFind.disabled = true;
@@ -84,6 +79,16 @@ function pauseCountDown () {
     resetButtonFind.disabled = false;
     increaseBreakTime.disabled = false;
     decreaseBreakTime.disabled = false;  
+}
+
+function resetCountDown () {
+    increaseSessionTime.disabled = false;
+    decreaseSessionTime.disabled = false;
+    clearInterval(intervalFunction);
+    countDownTime = selectedSessionTimeValue * 60;
+    selectedSessionTime.innerText = selectedSessionTimeValue;
+    selectedBreakTime.innerText = selectedBreakTimeValue;
+    displayTimeCountdown.innerText = selectedSessionTime.innerText + ':00';
 }
 
 function increaseOrDecreaseTime (breakOrSession) { //conditional that increases or decreases session or break buttons.
