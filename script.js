@@ -95,7 +95,7 @@ function startBreakCountDown () {
     if (countDownTime === 0){//conditional that states when the break time hits zero, it calls the session time function
         countDownTime = selectedSessionTimeValue * 60;
         clearInterval(breakIntervalFunction);
-        sessionIntervalFunction = setInterval(startSessionCountDown(),1000);
+        sessionIntervalFunction = setInterval(startSessionCountDown,1000);
         
     }
     playButtonFind.disabled = true; 
