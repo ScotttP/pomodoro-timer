@@ -1,7 +1,7 @@
 let selectedSessionTimeValue = 25;
 let selectedBreakTimeValue = 5;
 let countDownTime = selectedSessionTimeValue * 60;
-let intervalFunction = null;
+let intervalFunction;
 
 const displayTimeCountdown = document.getElementById('timerContainer');
 const playButtonFind= document.getElementById('play');
@@ -37,6 +37,9 @@ resetButton.addEventListener('click', () => {
     increaseSessionTime.disabled = false;
     decreaseSessionTime.disabled = false;
     clearInterval(intervalFunction);
+    selectedSessionTime.innerText = selectedSessionTimeValue;
+    selectedBreakTime.innerText = selectedBreakTimeValue;
+    displayTimeCountdown.innerText = selectedSessionTime.innerText + ':00';
     
 })
 
@@ -84,23 +87,22 @@ function pauseCountDown () {
 }
 
 function increaseOrDecreaseTime (breakOrSession) { //conditional that increases or decreases session or break buttons.
-    if (selectedSessionTimeValue <= 0 || selectedBreakTimeValue <= 0){
-        selectedBreakTimeValue = 0;
-        selectedSessionTimeValue = 0;
-    }else{
-        if (breakOrSession == "increaseSessionTime"){
-            selectedSessionTime.innerText = ++selectedSessionTimeValue;
-            displayTimeCountdown.innerText = selectedSessionTime.innerText; //countdown time display is updated when session time is updated
-        }else if (breakOrSession == "increaseBreakTime"){
-            selectedBreakTime.innerText = ++selectedBreakTimeValue;
-        }else if (breakOrSession == "decreaseSessionTime"){
-            selectedSessionTime.innerText = --selectedSessionTimeValue;
-            displayTimeCountdown.innerText = selectedSessionTime.innerText;//countdown time display is updated when session time is updated
-        }else if (breakOrSession == "decreaseBreakTime"){
-            selectedBreakTime.innerText = --selectedBreakTimeValue;
-        }else {
-            return;
-        }
+    if (selectedSessionTimeValue <= 0 || selectedBreakTimeValue <= 0){ //need to fix the conditional. once the value is at 0, you cannot increase it after that
+        selectedSessionTime.innerText == selectedSessionTimeValue;
+        selectedBreakTime.innerText == selectedBreakTimeValue;
+    }
+    if (breakOrSession == "increaseSessionTime"){
+        selectedSessionTime.innerText = ++selectedSessionTimeValue;
+        displayTimeCountdown.innerText = selectedSessionTime.innerText + ":00"; //countdown time display is updated when session time is updated
+    }else if (breakOrSession == "increaseBreakTime"){
+        selectedBreakTime.innerText = ++selectedBreakTimeValue;
+    }else if (breakOrSession == "decreaseSessionTime"){
+        selectedSessionTime.innerText = --selectedSessionTimeValue;
+        displayTimeCountdown.innerText = selectedSessionTime.innerText+ ":00";//countdown time display is updated when session time is updated
+    }else if (breakOrSession == "decreaseBreakTime"){
+        selectedBreakTime.innerText = --selectedBreakTimeValue;
+    }else {
+        return;
     }
 }
 
