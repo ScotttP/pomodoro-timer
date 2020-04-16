@@ -9,6 +9,7 @@ const decreaseSessionTime = document.getElementById('decreaseSessionTime');
 const decreaseBreakTime = document.getElementById('decreaseBreakTime');
 const selectedSessionTime = document.getElementById('selectedSessionTime');
 const selectedBreakTime = document.getElementById('selectedBreakTime');
+const displaySessionOrBreakTime = document.getElementById('displaySessionOrBreakTime');
 
 //QUERY SELECTORS//
 const playButton = document.querySelector('#play');
@@ -23,12 +24,18 @@ let sessionIntervalFunction; //this is declared so the clear interval function w
 let breakIntervalFunction; //this is declared so the clear interval function works properly
 
 //ASSIGNMENT OF INNERTEXT DEFAULT VALUES
-
+selectedSessionTime.innerText = selectedSessionTimeValue;
+selectedBreakTime.innerText = selectedBreakTimeValue;
 displayTimeCountdown.innerText = selectedSessionTimeValue + ':00';
+displaySessionOrBreakTime.innerText = 'Press Play to Start the Session!'
 
 // EVENT LISTENERS //
 playButton.addEventListener('click', () =>{
-   sessionIntervalFunction = setInterval(startSessionCountDown,1000);
+    if (displaySessionOrBreakTime.innerText == 'Press Play to Start the Session!' || displaySessionOrBreakTime.innerText == 'Session Time!' ) {
+        sessionIntervalFunction = setInterval(startSessionCountDown,1000);
+    }else{
+        breakIntervalFunction = setInterval(startBreakCountDown,1000);
+    }
 })
 pauseButton.addEventListener('click', () => {
     pauseCountDown();
@@ -56,13 +63,16 @@ function startSessionCountDown () {
     seconds = seconds < 10 ? '0' + seconds:seconds;
 
     displayTimeCountdown.innerText = `${minutes}:${seconds}`;
+    displaySessionOrBreakTime.innerText = 'Session Time!';
 
     countDownTime--;
     countDownTime = countDownTime < 0 ? 0 :countDownTime; 
     
-    if (countDownTime <= 0){ //conditional that states when the session time hits zero, it calls the break time function
+    if (countDownTime === 0){ //conditional that states when the session time hits zero, it calls the break time function
         countDownTime = selectedBreakTimeValue * 60
+        clearInterval(sessionIntervalFunction)
         breakIntervalFunction = setInterval(startBreakCountDown,1000);
+        
     }
     playButtonFind.disabled = true; 
     resetButtonFind.disabled = true;
@@ -77,15 +87,17 @@ function startBreakCountDown () {
     seconds = seconds < 10 ? '0' + seconds:seconds;
 
     displayTimeCountdown.innerText = `${minutes}:${seconds}`;
+    displaySessionOrBreakTime.innerText = 'Break Time!'
 
     countDownTime--;
     countDownTime = countDownTime < 0 ? 0 :countDownTime; 
 
-    if (countDownTime <= 0){//conditional that states when the break time hits zero, it calls the session time function
+    if (countDownTime === 0){//conditional that states when the break time hits zero, it calls the session time function
         countDownTime = selectedSessionTimeValue * 60;
-        setInterval(startSessionCountDown(countDownTime),1000);
+        clearInterval(breakIntervalFunction);
+        sessionIntervalFunction = setInterval(startSessionCountDown(),1000);
+        
     }
-
     playButtonFind.disabled = true; 
     resetButtonFind.disabled = true;
     increaseSessionTime.disabled = true;
@@ -114,6 +126,7 @@ function resetCountDown () {
     selectedSessionTime.innerText = selectedSessionTimeValue;
     selectedBreakTime.innerText = selectedBreakTimeValue;
     displayTimeCountdown.innerText = selectedSessionTime.innerText + ':00';
+    displaySessionOrBreakTime.innerText = 'Press Play to Start the Session!'
 }
 function increaseOrDecreaseTime (breakOrSession) { //conditional that increases or decreases session or break buttons.
     if (selectedSessionTimeValue < 0 || selectedBreakTimeValue < 0){ //need to fix the conditional. once the value is at 0, you cannot increase it after that
