@@ -17,8 +17,8 @@ const pauseButton = document.querySelector('#pause');
 const resetButton = document.querySelector('#reset');
 
 //GLOBAL VARIABLES//
-let selectedSessionTimeValue = 1;
-let selectedBreakTimeValue = 2;
+let selectedSessionTimeValue = 25;
+let selectedBreakTimeValue = 5;
 let countDownTime = selectedSessionTimeValue * 60;
 let sessionIntervalFunction; //this is declared so the clear interval function works properly
 let breakIntervalFunction; //this is declared so the clear interval function works properly
@@ -27,11 +27,11 @@ let breakIntervalFunction; //this is declared so the clear interval function wor
 selectedSessionTime.innerText = selectedSessionTimeValue;
 selectedBreakTime.innerText = selectedBreakTimeValue;
 displayTimeCountdown.innerText = selectedSessionTimeValue + ':00';
-displaySessionOrBreakTime.innerText = 'Press Play to Start the Session!'
+displaySessionOrBreakTime.innerText = 'Press Play to Start!'
 
 // EVENT LISTENERS //
 playButton.addEventListener('click', () =>{
-    if (displaySessionOrBreakTime.innerText == 'Press Play to Start the Session!' || displaySessionOrBreakTime.innerText == 'Session Time!' ) {
+    if (displaySessionOrBreakTime.innerText == 'Press Play to Start!' || displaySessionOrBreakTime.innerText == 'Session Time!' ) {
         sessionIntervalFunction = setInterval(startSessionCountDown,1000);
     }else{
         breakIntervalFunction = setInterval(startBreakCountDown,1000);
@@ -124,14 +124,14 @@ function resetCountDown () {
     increaseSessionTime.disabled = false;
     decreaseSessionTime.disabled = false;
     //variables assigned to their default values
-    selectedSessionTimeValue = 1;
-    selectedBreakTimeValue = 2;
+    selectedSessionTimeValue = 25;
+    selectedBreakTimeValue = 5;
     countDownTime = selectedSessionTimeValue * 60;
     //the display functionality of changing the default values
     selectedSessionTime.innerText = selectedSessionTimeValue;
     selectedBreakTime.innerText = selectedBreakTimeValue;
     displayTimeCountdown.innerText = selectedSessionTime.innerText + ':00';
-    displaySessionOrBreakTime.innerText = 'Press Play to Start the Session!'
+    displaySessionOrBreakTime.innerText = 'Press Play to Start!'
 }
 function increaseOrDecreaseTime (breakOrSession) { //conditional that increases or decreases session or break buttons.
     if (selectedSessionTimeValue <= 0){ //need to fix the conditional. once the value is at 0, you cannot increase it after that
