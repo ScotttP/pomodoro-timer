@@ -110,8 +110,13 @@ function pauseCountDown () {
     clearInterval(breakIntervalFunction);
     playButtonFind.disabled = false; 
     resetButtonFind.disabled = false;
-    increaseBreakTime.disabled = false;
-    decreaseBreakTime.disabled = false;  
+    if (displaySessionOrBreakTime.innerText = 'Session Time!'){
+        increaseBreakTime.disabled = false;
+        decreaseBreakTime.disabled = false; 
+    }else{
+        increaseSessionTime.disabled = false;
+        decreaseSessionTime.disabled = false;
+    }
 }
 function resetCountDown () {
     clearInterval(sessionIntervalFunction);
@@ -129,9 +134,10 @@ function resetCountDown () {
     displaySessionOrBreakTime.innerText = 'Press Play to Start the Session!'
 }
 function increaseOrDecreaseTime (breakOrSession) { //conditional that increases or decreases session or break buttons.
-    if (selectedSessionTimeValue < 0 || selectedBreakTimeValue < 0){ //need to fix the conditional. once the value is at 0, you cannot increase it after that
-        decreaseSessionTime.disabled = true;
-        decreaseBreakTime.disabled = true;
+    if (selectedSessionTimeValue <= 0){ //need to fix the conditional. once the value is at 0, you cannot increase it after that
+        selectedSessionTimeValue += 1;
+    }else if(selectedBreakTimeValue <= 0){
+        selectedBreakTimeValue += 1;
     }else{
         decreaseSessionTime.disabled=false;
         decreaseBreakTime.disabled=false;
